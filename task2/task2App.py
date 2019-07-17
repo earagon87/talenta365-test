@@ -75,13 +75,15 @@ class TestSuite(unittest.TestCase):
 
     def test_number_to_col_name(self):
         self.assertEqual(number_to_col_name(1), "A")
+        self.assertEqual(number_to_col_name(2), "B")
+        self.assertEqual(number_to_col_name(13), "M")
+        self.assertEqual(number_to_col_name(14), "N")
         self.assertEqual(number_to_col_name(15), "Ñ")
-        self.assertEqual(number_to_col_name(27), "Z")
+        self.assertEqual(number_to_col_name(16), "O")
         self.assertEqual(number_to_col_name(28), "AA")
         self.assertEqual(number_to_col_name(54), "AZ")
         self.assertEqual(number_to_col_name(55), "BA")
-        self.assertEqual(number_to_col_name(81), "BZ")
-        self.assertEqual(number_to_col_name(82), "CA")
+        self.assertEqual(number_to_col_name(69), "BÑ")
 
     def test_get_alphabet_letter(self):
         self.assertEqual(get_alphabet_letter(1), "A")
