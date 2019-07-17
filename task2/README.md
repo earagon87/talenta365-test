@@ -1,6 +1,6 @@
 # Task 2: Programming Challenge
 
-Application in Python that receives the number of a excel column and say what is the conversion into letters. In the same way Excel does, BUT adding the letter "Ñ".
+Application in Python that receives the number of excel column and returns what is the conversion into letters. In the same way Excel does, BUT including "Ñ" letter.
 
 Test Cases
 
