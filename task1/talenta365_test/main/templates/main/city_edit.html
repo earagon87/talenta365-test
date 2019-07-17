@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Add city
+{% endblock %}
+{% block content %}
+    <h1>Add city</h1>
+    <form method="POST" class="item-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

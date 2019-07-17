@@ -1,0 +1,16 @@
+{% extends "main/base.html" %}
+{% block title %}
+Cities
+{% endblock %}
+{% block add_item %}
+<h1>
+    <a href="{% url 'city_new' %}" class="add-item" title="Add city">
+        <i class="fas fa-plus"></i>
+    </a>
+</h1>
+{% endblock %}
+{% block content %}
+<h1>
+    Cities List
+</h1>
+{% endblock %}

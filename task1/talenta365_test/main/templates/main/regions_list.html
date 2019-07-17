@@ -1,0 +1,16 @@
+{% extends "main/base.html" %}
+{% block title %}
+Regions
+{% endblock %}
+{% block add_item %}
+<h1>
+    <a href="{% url 'region_new' %}" class="add-item" title="Add region">
+        <i class="fas fa-plus"></i>
+    </a>
+</h1>
+{% endblock %}
+{% block content %}
+<h1>
+    Regions List
+</h1>
+{% endblock %}
