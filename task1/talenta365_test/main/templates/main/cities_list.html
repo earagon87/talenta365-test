@@ -4,13 +4,60 @@ Cities
 {% endblock %}
 {% block add_item %}
 <h1>
-    <a href="{% url 'city_new' %}" class="add-item" title="Add city">
+    <a href="{% url 'city_new' %}" class="add-item" data-toggle="tooltip" data-placement="left" title="Add new city">
         <i class="fas fa-plus"></i>
     </a>
 </h1>
 {% endblock %}
 {% block content %}
-<h1>
-    Cities List
-</h1>
+    <h1>
+        Cities List
+    </h1>
+    {% if cities_list %}
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for city in cities_list %}
+                <tr>
+                    <th scope="row">
+                        {{city.pk}}  
+                    </th>
+                    <td>
+                        {{city.name}}  
+                    </td>
+                    <td>
+                        {% if city.status == 'A' %}
+                            Active 
+                        {% else %}
+                            Inactive
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'city_edit' pk=city.pk %}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{% url 'city_delete' pk=city.pk %}" onclick="return confirm('Are you sure you want to delete this?')">
+                            <i class="fas fa-trash"></i>
+                        </a>
+ 
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="row">
+            <div class="alert alert-info">
+                No cities are available.
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

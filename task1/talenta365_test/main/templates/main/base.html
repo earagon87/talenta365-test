@@ -56,8 +56,19 @@
                     </div>
                 </nav>
 
+                <div class="row">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{% if message.tags == 'success' %}success{% else %}danger{% endif %} alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                {{ message|safe }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
                 {% block add_item %}
-                {% endblock %}
+                {% endblock %}       
 
                 {% block content %}
                 {% endblock %}

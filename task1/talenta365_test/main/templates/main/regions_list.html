@@ -4,13 +4,51 @@ Regions
 {% endblock %}
 {% block add_item %}
 <h1>
-    <a href="{% url 'region_new' %}" class="add-item" title="Add region">
+    <a href="{% url 'region_new' %}" class="add-item" data-toggle="tooltip" data-placement="left" title="Add new region">
         <i class="fas fa-plus"></i>
     </a>
 </h1>
 {% endblock %}
 {% block content %}
-<h1>
-    Regions List
-</h1>
+    <h1>
+        Regions List
+    </h1>
+    {% if regions_list %}
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for region in regions_list %}
+                <tr>
+                    <th scope="row">
+                        {{region.id}}  
+                    </th>
+                    <td>
+                        {{region.name}}  
+                    </td>
+                    <td>
+                        <a href="{% url 'region_edit' pk=region.pk %}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{% url 'region_delete' pk=region.pk %}" onclick="return confirm('Are you sure you want to delete this?')">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="row">
+            <div class="alert alert-info">
+                No regions are available.
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
