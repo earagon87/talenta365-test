@@ -17,7 +17,7 @@ class City(models.Model):
 
     def save(self, *args, **kwargs):
         # Remove region assocciations when status is changed to Inactive
-        if self.status == Status.INACTIVE.value:
+        if self.pk and self.status == Status.INACTIVE.value:
             self.region_set.clear()
         super().save(*args, **kwargs)
 
