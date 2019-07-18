@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .forms import CityForm, RegionForm
@@ -10,13 +11,17 @@ def index(request):
 
 def cities(request):
     cities_list = City.objects.all()
-    context = {'cities_list': cities_list}
-    return render(request, "main/cities_list.html", context)
+    paginator = Paginator(cities_list, 10) # Show 10 contacts per page
+    page = request.GET.get('page')
+    cities = paginator.get_page(page)
+    return render(request, 'main/cities_list.html', {'cities': cities})
 
 def regions(request):
     regions_list = Region.objects.all()
-    context = {'regions_list': regions_list}
-    return render(request, "main/regions_list.html", context)
+    paginator = Paginator(regions_list, 10) # Show 10 contacts per page
+    page = request.GET.get('page')
+    regions = paginator.get_page(page)
+    return render(request, 'main/regions_list.html', {'regions': regions})
 
 def city_new(request):
     """
@@ -114,7 +119,7 @@ def city_delete(request, pk):
             u"<strong>Ouch.</strong> The city couldn't be "
             u"removeed. Please try again."
         )
-    # Returning   
+    # Returning to cities list 
     return redirect('cities')
 
 def region_new(request):
@@ -212,5 +217,5 @@ def region_delete(request, pk):
             u"<strong>Ouch.</strong> The region couldn't be "
             u"removeed. Please try again."
         )
-    # Returning   
+    # Returning to regions list  
     return redirect('regions')
