@@ -7,7 +7,7 @@ from .models import City, Region
 
 
 def index(request):
-    return render(request, "main/cities_list.html")
+    return redirect('cities')
 
 def cities(request):
     cities_list = City.objects.all()
